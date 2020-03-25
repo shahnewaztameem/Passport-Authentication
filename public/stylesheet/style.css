@@ -8,8 +8,9 @@ body {
     background-color: #000;
     color: #fff;
 }
-h1 {
+.form-wrapper h1 {
     color: #35df79;
+    margin-bottom: 2rem;
 }
 .form-wrapper {
     width: 50%;
