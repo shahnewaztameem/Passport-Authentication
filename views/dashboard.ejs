@@ -1,12 +1,32 @@
 <%- include("./partials/header")%>
-   <div class="container">
-       <div class="row">
-           <div class="col-md-12">
-               <div class="header-text text-center">
-                    <h1>Dashboard</h1>
-                    <a href="/logout" class="btn btn-danger">Logout</a>
-               </div>
-           </div>
-       </div>
-   </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="header-text text-center">
+                <h1>Dashboard</h1>
+                <a href="/logout" class="btn btn-danger">Logout</a>
+            </div>
+            <div class="col-md-6 offset-md-3">
+                <div class="user-info-wrapper mt-4">
+                    <table class="table table-dark table-bordered center">
+                        <tr class="text-center">
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Delete An user</th>
+                        </tr>
+                        <% users.forEach(user => { %>
+                        <tr class="text-center">
+                            <td><%= user.username%></td>
+                            <td><%= user.email%></td>
+                            <td> 
+                                <a href="/delete/<%=user._id%>" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                        <% }); %>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <%- include("./partials/footer")%>

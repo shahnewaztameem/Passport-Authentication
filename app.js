@@ -38,7 +38,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/dashboard', isLoggedIn, (req, res) => {
-    res.render('dashboard');
+    User.find({}, (error, users) => {
+        if(error) {
+            console.log(error);
+        }
+        else {
+            res.render('dashboard', {users: users});
+        }
+    })
+    
 });
 
 // ===================
