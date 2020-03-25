@@ -1,17 +1,27 @@
-*{
+@import url('https://fonts.googleapis.com/css?family=Baloo+2:400,700&display=swap');
+
+* {
     margin: 0;
     padding: 0;
     outline: none;
     box-sizing: border-box;
 }
+
+html {
+    text-rendering: optimizeLegibility;
+}
+
 body {
     background-color: #000;
     color: #fff;
+    font-family: 'Baloo 2', cursive;
 }
+
 .form-wrapper h1 {
     color: #35df79;
     margin-bottom: 2rem;
 }
+
 .form-wrapper {
     width: 50%;
     margin: 150px auto;
@@ -23,6 +33,7 @@ body {
     border: 2px solid #35df79;
 
 }
+
 button {
     background-color: #35df79;
     color: #fff;
@@ -33,6 +44,15 @@ button {
 
 
 }
+
 button:hover {
     background-color: #1ebf5e;
+}
+
+.header-text {
+    margin-top: 230px;
+}
+
+.header-text h1 {
+    color: #35df79;
 }

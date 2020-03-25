@@ -18,10 +18,12 @@ app.use(require('express-session')({
     resave: true,
     saveUninitialized: false
 }));
+
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(bodyParser.urlencoded({extended: true}));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser())
@@ -38,9 +40,37 @@ app.get('/dashboard', (req, res) => {
     res.render('dashboard');
 });
 
+// ===================
+// Signup Routes
+// ===================
+
 app.get('/signup', (req, res) => {
     res.render('signup');
 });
+
+app.post('/signup', (req, res) => {
+    User.register(new User({username: req.body.username, email: req.body.email}), req.body.password, (error, user) => {
+        if(error) {
+            console.log(error);
+            return res.render('signup');
+        }
+        passport.authenticate('local')(req, res, () => {
+            res.redirect('/dashboard');
+        })
+    });
+});
+
+// ===================
+// Login Routes
+// ===================
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/login'
+}) ,(req, res) => {})
 
 // ===================
 // Server startup
