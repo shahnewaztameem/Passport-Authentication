@@ -10,7 +10,7 @@ var express                 = require('express'),
 // DB conncection
 // ===================
 
-mongoose.connect("mongodb://localhost/passport_auth", {useNewUrlParser: true,useUnifiedTopology: true});
+mongoose.connect("mongodb://localhost/passport_auth", {useNewUrlParser: true,useUnifiedTopology: true, useFindAndModify: false});
 
 var app = express();
 app.use(require('express-session')({
