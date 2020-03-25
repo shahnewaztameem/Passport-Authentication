@@ -18,6 +18,7 @@ app.use(require('express-session')({
     resave: true,
     saveUninitialized: false
 }));
+app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 app.use(passport.initialize());
 app.use(passport.session());
@@ -37,6 +38,9 @@ app.get('/dashboard', (req, res) => {
     res.render('dashboard');
 });
 
+app.get('/signup', (req, res) => {
+    res.render('signup');
+});
 
 // ===================
 // Server startup

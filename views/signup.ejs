@@ -1,0 +1,25 @@
+<%- include("./partials/header")%>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-wrapper">
+                    <h1 class="text-center">
+                        Passport Auth Using Node JS
+                    </h1>
+                    <form action="/signup" method="POST">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" id="" class="form-control" placeholder="Enter username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="" class="form-control" placeholder="Enter password">
+                        </div>
+                        <button class="btn-block">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include("./partials/footer")%>
