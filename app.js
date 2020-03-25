@@ -25,6 +25,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.urlencoded({extended: true}));
 
+passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser())
 
@@ -36,7 +37,7 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
-app.get('/dashboard', (req, res) => {
+app.get('/dashboard', isLoggedIn, (req, res) => {
     res.render('dashboard');
 });
 
@@ -49,7 +50,7 @@ app.get('/signup', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-    User.register(new User({username: req.body.username, email: req.body.email}), req.body.password, (error, user) => {
+    User.register(new User({username: req.body.username , email: req.body.email}), req.body.password, (error, user) => {
         if(error) {
             console.log(error);
             return res.render('signup');
@@ -71,6 +72,26 @@ app.post('/login', passport.authenticate('local', {
     successRedirect: '/dashboard',
     failureRedirect: '/login'
 }) ,(req, res) => {})
+
+// ===================
+// Logout Route
+// ===================
+
+app.get('/logout', (req, res) => {
+    req.logOut();
+    res.redirect('/')
+});
+
+// ===================
+// Middleware
+// ===================
+
+function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+}
 
 // ===================
 // Server startup
