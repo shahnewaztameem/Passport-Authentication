@@ -101,6 +101,16 @@ function isLoggedIn(req, res, next) {
     res.redirect('/login');
 }
 
+app.get('/delete/:id',isLoggedIn , (req, res) => {
+    User.findByIdAndRemove(req.params.id, (error, user) => {
+        if(error) {
+            console.log(error);
+        }
+        else {
+            res.redirect('/dashboard');
+        }
+    })
+})
 // ===================
 // Server startup
 // ===================
